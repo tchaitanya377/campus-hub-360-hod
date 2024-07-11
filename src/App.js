@@ -1,24 +1,35 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
+import Navbar from './components/Navbar';
+import Dashboard from './components/Dashboard';
+import DepartmentManagement from './components/DepartmentManagement';
+import CourseOversight from './components/CourseOversight';
+import ManageCourses from './components/ManageCourses';
+import Students from './components/Students';
+import StudentProfilePage from './components/StudentProfilePage';
+import CourseProgress from './components/CourseProgress';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App flex flex-col md:flex-row h-screen">
+        <Navbar />
+        <div className="flex-1 flex-1 overflow-auto">
+          <Routes>
+            <Route path="/hod/home" element={<Dashboard />} />
+            <Route path="/hod/department-management" element={<DepartmentManagement />} />
+            <Route path="/hod/course-oversight" element={<CourseOversight />} />
+            <Route path="/hod/manage-courses" element={<ManageCourses />} />
+            <Route path="/hod/students" element={<Students />} />
+            <Route path="/students/:id" element={<StudentProfilePage />} />
+             <Route path="/course-progress" element={<CourseProgress />} />
+         
+            {/* Add other routes here */}
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
 
